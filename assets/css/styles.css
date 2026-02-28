@@ -242,6 +242,15 @@ img {
 .about__subtitle {
   margin-bottom: var(--mb-2);
 }
+.about__content {
+  border: 4px solid rgb(62, 111, 244);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 .about__img {
   justify-self: center;
 }

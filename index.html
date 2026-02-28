@@ -1,182 +1,465 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohammed Amer | Portfolio</title>
 
-        <link rel="stylesheet" href="assets/css/styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet">
 
-        <!-- =====BOX ICONS===== -->
-        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+  <style>
+    body { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+    .navbar-brand {
+      font-weight: bold;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .section-title {
+      font-weight: 800;
+      font-size: 2.3rem;
+      color: #0d6efd;
+      margin-bottom: 2.2rem;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+    .home__dynamic-text { color:#1b1b1b; font-weight: 700; font-size: 1.35rem; }
+    .cursor { display:inline-block; animation: blink 0.7s steps(2, start) infinite; color:#0d6efd; }
+    @keyframes blink { to { visibility: hidden; } }
 
-        <title>Mohammed</title>
-    </head>
-    <body>
-        <!--===== HEADER =====-->
-        <header class="l-header">
-            <nav class="nav bd-grid">
-                <div>
-                    <a href="#" class="nav__logo">Mohammed</a>
-                </div>
+    .skills-icon { font-size: 1.35rem; margin-right: 0.5rem; }
+    .card-body { min-height: 190px; }
 
-                <div class="nav__menu" id="nav-menu">
-                    <ul class="nav__list">
-                        <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
-                        <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
-                        <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
-                        <li class="nav__item"><a href="#work" class="nav__link">Work</a></li>
-                        <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
-                    </ul>
-                </div>
+    .chip {
+      display:inline-flex; align-items:center; gap:6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(13,110,253,.08);
+      border: 1px solid rgba(13,110,253,.15);
+      font-size: .85rem;
+      font-weight: 600;
+      color: #0b5ed7;
+      margin: 4px 6px 0 0;
+    }
+    .muted { color: #6c757d; }
 
-                <div class="nav__toggle" id="nav-toggle">
-                    <i class='bx bx-menu'></i>
-                </div>
-            </nav>
-        </header>
+    .footer { background-color: #0d6efd; color: white; }
+    .footer a { color: white; }
+    .footer a:hover { color: #ffc107; }
 
-        <main class="l-main">
-            <!--===== HOME =====-->
-            <section class="home bd-grid" id="home">
-                <div class="home__data">
-                    <h1 class="home__title">
-                        Hi,<br>I'm <span class="home__title-color">Mohammed</span><br>
-                        <span id="changing-title" class="home__dynamic-text"></span><span class="cursor">|</span>
-                    </h1>
-            
-                    <a href="https://wa.me/96181370450" class="button">Contact</a>
-                </div>
-            
-                <div class="home__social">
-                    <a href="https://www.linkedin.com/in/mohammed-amer-175538253/" class="home__social-icon"><i class='bx bxl-linkedin'></i></a>
-                    <a href="https://github.com/mhmd901" class="home__social-icon"><i class='bx bxl-github'></i></a>
-                </div>
-            
-                <div class="home__img">
-                    <svg class="home__blob" viewBox="0 0 479 467" xmlns="http://www.w3.org/2000/svg">
-                        <mask id="mask0" mask-type="alpha">
-                            <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
-                        </mask>
-                        <g mask="url(#mask0)">
-                            <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
-                            <image class="home__blob-img" x="50" y="60" href="assets/img/perfil.png"/>
-                        </g>
-                    </svg>
-                </div>
-            </section>
-            
-            
+    /* small polish */
+    .shadow-soft { box-shadow: 0 12px 30px rgba(0,0,0,.08); }
+    .bg-soft { background: linear-gradient(180deg, rgba(13,110,253,.07), rgba(255,255,255,1)); }
+  </style>
+</head>
 
-            <!--===== ABOUT =====-->
-            <section class="about section " id="about">
-                <h2 class="section-title">About</h2>
+<body>
 
-                <div class="about__container bd-grid">
-                    <div class="about__img">
-                        <img src="assets/img/about me.png" alt="">
-                    </div>
-                    
-                    <div>
-                        <h2 class="about__subtitle">I'am Mahammed</h2>
-                        <p class="about__text">Hi! I’m Mohammed Kamel Amer, a third-year Computer Science student and an Arduino & Robotics trainer at SSE Center. I’m passionate about technology, teaching, and creating smart, user-friendly digital experiences.
+<!-- HEADER -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="#home">Mohammed</a>
 
-                            <br>I work across a variety of platforms — from web to mobile to desktop applications — using technologies like PHP, Laravel, Flutter, and C#. I enjoy bringing ideas to life through clean code and intuitive design.
-                            
-                            <br>Beyond development, I have a special touch in designing web pages that are both functional and visually appealing. Whether it's training students in robotics or building full-stack applications, I strive to combine creativity with problem-solving in everything I do.</p>           
-                    </div>                                   
-                </div>
-            </section>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <i class='bx bx-menu'></i>
+    </button>
 
-            <!--===== SKILLS =====-->
-            <section class="skills section" id="skills">
-                <h2 class="section-title">Skills</h2>
-            
-                <div class="skills__container bd-grid">          
-                    <div>
-                        <h2 class="skills__subtitle">Skills</h2>
-                        <p class="skills__text">
-                            Here are the tools and technologies I work with across web, mobile, and desktop development.
-                        </p>
-                        <ul class="skills__list">
-                            <li><i class='bx bxl-html5'></i> HTML5</li>
-                            <li><i class='bx bxl-css3'></i> CSS3</li>
-                            <li><i class='bx bxl-javascript'></i> JavaScript</li>
-                            <li><i class='bx bxl-php'></i> PHP</li>
-                            <li><i class='bx bxl-flutter'></i> Flutter</li>
-                            <li><i class='bx bxl-c-plus-plus'></i> C#</li>
-                            <li><i class='bx bxl-laravel'></i> Laravel</li>
-                            <li><i class='bx bxl-figm'></i> SQL</li>
-                            <li><i class='bx bx-microchip'></i> Arduino</li>
-                            <li><i class='bx bx-robot'></i> Robotics</li>
-                        </ul>
-                    </div>
-                    
-                    <div>              
-                        <img src="assets/img/IMG_6997.JPG" alt="" class="skills__img">
-                    </div>
-                </div>
-            </section>
-            
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+        <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#work">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-            <!--===== WORK =====-->
-            <section class="work section" id="work">
-                <h2 class="section-title">Work</h2>
-            
-                <div class="work__container bd-grid">
-                    <div class="work__item">
-                        <a href="https://ayman-car.netlify.app/" class="work__img">
-                            <img src="assets/img/Screenshot 2025-04-20 183249.png" alt="">
-                            <div class="work__overlay">
-                                <h3 class="work__title">Ayman Car</h3>
-                                <p class="work__desc">Car upholstery shop frontend project with clean UI and responsive layout.</p>
-                            </div>
-                        </a>
-                    </div>
-            
-                    <div class="work__item">
-                        <a href="https://github.com/mhmd901/beta" class="work__img">
-                            <img src="assets/img/Screenshot 2025-04-20 192338.png" alt="">
-                            <div class="work__overlay">
-                                <h3 class="work__title">Beta App</h3>
-                                <p class="work__desc">responsive university system using php.</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </section>
-            
+<!-- HOME -->
+<section id="home" class="py-5 mt-5">
+  <div class="container">
+    <div class="row align-items-center g-5">
 
-            <!--===== CONTACT =====-->
-            <section class="contact section" id="contact">
-                <h2 class="section-title">Contact</h2>
-            
-                <div class="contact__container bd-grid">
-                    <form action="https://formsubmit.co/mhmdamer673@gmail.com" method="POST" class="contact__form">
-                        <input type="text" name="name" placeholder="Name" class="contact__input" required>
-                        <input type="email" name="email" placeholder="Email" class="contact__input" required>
-                        <textarea name="message" placeholder="Your Message" cols="0" rows="10" class="contact__input" required></textarea>
-                        <input type="submit" value="Send" class="contact__button button">
-            
-                        <!-- Optional: redirect after submission -->
-                        <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
-                        <input type="hidden" name="_captcha" value="false">
-                    </form>
-                </div>
-            </section>
-        </main>            
+      <!-- Text -->
+      <div class="col-lg-6">
+        <h1 class="display-4 fw-bold">
+          Hi, I'm <span class="text-primary">Mohammed Amer</span>
+        </h1>
 
-        <!--===== FOOTER =====-->
-        <footer class="footer">
-            <p class="footer__title">Mohammed</p>
-  
-           
-        </footer>
+        <!-- Dynamic Roles -->
+        <p class="home__dynamic-text">
+          <span id="dynamicRole"></span><span class="cursor">|</span>
+        </p>
 
+        <p class="mt-3 muted">
+          AI & IoT Solutions | Full-Stack Developer | Tech Community Leader | STEAM Mentor | GDG OnCampus Co-Lead |
+          IT Team Member @ HAICI (IUL)
+        </p>
 
-        <!--===== SCROLL REVEAL =====-->
-        <script src="https://unpkg.com/scrollreveal"></script>
+        <div class="d-flex flex-wrap mt-2">
+          <span class="chip"><i class='bx bx-chip'></i>AI & IoT</span>
+          <span class="chip"><i class='bx bx-code-alt'></i>Laravel</span>
+          <span class="chip"><i class='bx bxl-flutter'></i>Flutter</span>
+          <span class="chip"><i class='bx bx-network-chart'></i>Automation</span>
+          <span class="chip"><i class='bx bx-group'></i>Community</span>
+        </div>
 
-        <!--===== MAIN JS =====-->
-        <script src="assets/js/main.js"></script>
-    </body>
+        <div class="d-flex gap-2 flex-wrap mt-4">
+          <a href="https://wa.me/96181370450" class="btn btn-primary">Let’s Connect</a>
+          <a href="#work" class="btn btn-outline-primary">View Projects</a>
+        </div>
+
+        <div class="d-flex gap-3 mt-4">
+          <!-- Keep your existing links (edit if needed) -->
+          <a href="https://linkedin.com/in/mohammed-amer-175538253" target="_blank" rel="noreferrer">
+            <i class='bx bxl-linkedin fs-2'></i>
+          </a>
+          <a href="https://github.com/mhmd901" target="_blank" rel="noreferrer">
+            <i class='bx bxl-github fs-2'></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Image -->
+      <div class="col-lg-6 text-center">
+        <div class="position-relative d-inline-block">
+          <img src="assets/img/perfil.png"
+               class="img-fluid rounded-circle shadow-lg border border-4 border-primary"
+               style="max-width: 280px; transition: transform 0.3s ease;"
+               alt="Profile"
+               onmouseover="this.style.transform='scale(1.05)'"
+               onmouseout="this.style.transform='scale(1)'">
+
+          <div class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+            <i class='bx bx-badge-check'></i>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center section-title">About</h2>
+    <div class="row align-items-center g-4">
+      <div class="col-md-6">
+        <img src="assets/img/about me.png" class="img-fluid rounded shadow-soft" alt="About">
+      </div>
+
+<div class="col-md-6">
+  <p class="lead fw-semibold">
+    I’m Mohammad Amer — a Computer Science graduate, AI & IoT Engineer, and Full-Stack Developer driven by innovation and real-world impact.
+  </p>
+
+  <p class="muted">
+    My work focuses on designing intelligent systems that connect hardware and software — from embedded Arduino and IoT architectures to scalable backend solutions using Laravel and cross-platform mobile applications built with Flutter.
+  </p>
+
+  <p class="muted">
+    I am the founder of <b>HydroNova</b>, an AI-powered smart agriculture ecosystem that integrates automation, sensor-driven data, and full-stack development to deliver sustainable and technology-driven solutions.
+  </p>
+
+  <p class="muted">
+    Alongside product development, I serve as the <b>Co-Lead of Google Developer Group (GDG) OnCampus</b> at the Islamic University of Lebanon and as a <b>member of the Humanity–AI Driven Center for Innovation (HAI-CI)</b>, contributing to AI-focused initiatives and technology leadership within the university community.
+  </p>
+
+  <p class="muted mb-0">
+    As a <b>Technology & AI Instructor</b> at SSE Center, I design and deliver robotics, Arduino, AI tools, and soft skills workshops for both students and adults — empowering others to build, innovate, and leverage emerging technologies effectively.
+  </p>
+</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="py-5">
+  <div class="container">
+    <h2 class="text-center section-title">Experience</h2>
+
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="p-4 rounded shadow-soft bg-white h-100 border">
+          <h5 class="fw-bold mb-1">Technology & AI Instructor (Robotics / Arduino / Adult Workshops)</h5>
+          <div class="muted mb-3">SMART START EDUCATION (SSE Center) • Aug 2024 – Present • Nabatieh, Lebanon</div>
+          <ul class="mb-0 muted">
+            <li>Deliver robotics and Arduino training for students (10–14) and adult learners.</li>
+            <li>Teach embedded systems fundamentals: sensors, actuators, control logic, and IoT basics.</li>
+            <li>Run AI tools workshops for adults (productivity, automation workflows, responsible use).</li>
+            <li>Facilitate soft skills sessions: communication, teamwork, leadership, and problem solving.</li>
+            <li>Mentor students for robotics competitions and project showcases.</li>
+          </ul>
+          <div class="mt-3">
+            <span class="chip">Arduino</span>
+            <span class="chip">Robotics</span>
+            <span class="chip">IoT</span>
+            <span class="chip">Workshop Facilitation</span>
+            <span class="chip">Public Speaking</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="p-4 rounded shadow-soft bg-white h-100 border">
+          <h5 class="fw-bold mb-1">Co-Lead — Google Developer Group (GDG) OnCampus</h5>
+          <div class="muted mb-3">Islamic University of Lebanon (IUL) • Present</div>
+          <ul class="mb-0 muted">
+            <li>Co-lead the university tech community: workshops, sessions, hackathons, and events.</li>
+            <li>Support students in modern technologies (web, mobile, AI, cloud) and career growth.</li>
+            <li>Coordinate speakers, partners, and community initiatives.</li>
+          </ul>
+          <div class="mt-3">
+            <span class="chip">Leadership</span>
+            <span class="chip">Community Building</span>
+            <span class="chip">Event Management</span>
+            <span class="chip">Mentorship</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="p-4 rounded shadow-soft bg-white h-100 border">
+          <h5 class="fw-bold mb-1">Member — Humanity–AI Driven Center for Innovation (HAI-CI)</h5>
+          <div class="muted mb-3">Islamic University of Lebanon (IUL) • Present</div>
+          <ul class="mb-0 muted">
+            <li>Participate in AI training programs and innovation initiatives focused on human-centered impact.</li>
+            <li>Engage in discussions and applied projects related to ethical and responsible AI.</li>
+          </ul>
+          <div class="mt-3">
+            <span class="chip">AI</span>
+            <span class="chip">Generative AI</span>
+            <span class="chip">AI Ethics</span>
+            <span class="chip">Innovation</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="p-4 rounded shadow-soft bg-white h-100 border">
+          <h5 class="fw-bold mb-1">Full-Stack Developer Intern (Web + Mobile)</h5>
+          <div class="muted mb-3">XpertBot • May 2024 – Apr 2025 • Remote</div>
+          <ul class="mb-0 muted">
+            <li>Built backend features with Laravel (MVC, authentication, database-driven modules, REST APIs).</li>
+            <li>Developed Flutter mobile features and integrated APIs; improved performance and reliability.</li>
+            <li>Worked in team workflows using Git and iterative delivery.</li>
+          </ul>
+          <div class="mt-3">
+            <span class="chip">Laravel</span>
+            <span class="chip">Flutter</span>
+            <span class="chip">REST APIs</span>
+            <span class="chip">MySQL</span>
+            <span class="chip">Git</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="py-5 bg-soft">
+  <div class="container">
+    <h2 class="text-center section-title">Education</h2>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="p-4 rounded shadow-soft bg-white border">
+          <h5 class="fw-bold mb-1">B.S. in Computer Science</h5>
+          <div class="muted mb-3">Islamic University of Lebanon (IUL) • Lebanon</div>
+
+          <p class="muted mb-2">
+            Strong foundation in software engineering, systems design, databases, and intelligent technologies.
+            Actively engaged in university tech leadership through GDG OnCampus and innovation initiatives through HAI-CI.
+          </p>
+
+          <p class="muted mb-0">
+            Capstone/Flagship Project: <b>HydroNova</b> — AI-powered smart hydroponic ecosystem integrating IoT sensors,
+            automation, Laravel backend services, and Flutter mobile applications.
+          </p>
+
+          <div class="mt-3">
+            <span class="chip">Software Engineering</span>
+            <span class="chip">Algorithms</span>
+            <span class="chip">Databases</span>
+            <span class="chip">AI</span>
+            <span class="chip">IoT</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="py-5">
+  <div class="container">
+    <h2 class="text-center section-title">Skills</h2>
+
+    <div class="row g-4">
+      <div class="col-md-6">
+        <ul class="list-unstyled row row-cols-2 g-3">
+          <li><i class='bx bxl-html5 text-danger skills-icon'></i>HTML5</li>
+          <li><i class='bx bxl-css3 text-primary skills-icon'></i>CSS3</li>
+          <li><i class='bx bxl-javascript text-warning skills-icon'></i>JavaScript</li>
+          <li><i class='bx bxl-php text-secondary skills-icon'></i>PHP</li>
+          <li><i class='bx bxl-laravel text-danger skills-icon'></i>Laravel</li>
+          <li><i class='bx bxl-flutter text-info skills-icon'></i>Flutter</li>
+          <li><i class='bx bx-data text-success skills-icon'></i>MySQL / SQL</li>
+          <li><i class='bx bxl-git text-dark skills-icon'></i>Git / GitHub</li>
+
+          <li><i class='bx bx-chip text-muted skills-icon'></i>Embedded Systems</li>
+          <li><i class='bx bx-microchip text-muted skills-icon'></i>Arduino</li>
+          <li><i class='bx bx-robot text-primary skills-icon'></i>Robotics</li>
+          <li><i class='bx bx-wifi text-primary skills-icon'></i>IoT</li>
+
+          <li><i class='bx bx-brain text-primary skills-icon'></i>Artificial Intelligence (AI)</li>
+          <li><i class='bx bx-bot text-primary skills-icon'></i>AI Tools</li>
+          <li><i class='bx bx-network-chart text-primary skills-icon'></i>Automation (n8n)</li>
+          <li><i class='bx bx-group text-primary skills-icon'></i>Workshop Facilitation</li>
+        </ul>
+      </div>
+
+      <div class="col-md-6 text-center">
+        <img src="assets/img/IMG_6997.JPG" class="img-fluid rounded shadow-soft" alt="Skills">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK / PROJECTS -->
+<section id="work" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center section-title">Projects</h2>
+
+    <div class="row g-4">
+      <!-- HydroNova -->
+      <div class="col-md-6">
+        <div class="card h-100 shadow-soft">
+          <img src="assets/img/hydronova.png" class="card-img-top" alt="HydroNova (add your image)">
+          <div class="card-body">
+            <h5 class="card-title">HydroNova</h5>
+            <p class="card-text muted">
+              AI-powered smart hydroponic ecosystem integrating IoT sensors, automation, Laravel backend services,
+              and Flutter mobile applications for sustainable agriculture.
+            </p>
+            <a href="https://hydronova.multydo.com/" class="btn btn-outline-primary" target="_blank" rel="noreferrer">view</a>
+            <a href="https://github.com/mhmd901/HydroNova_web" class="btn btn-outline-dark" target="_blank" rel="noreferrer">Code</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Existing projects -->
+      <div class="col-md-6">
+        <div class="card h-100 shadow-soft">
+          <img src="assets/img/Screenshot 2025-04-20 183249.png" class="card-img-top" alt="Ayman Car">
+          <div class="card-body">
+            <h5 class="card-title">Ayman Car</h5>
+            <p class="card-text muted">Frontend project for a car upholstery shop with a modern responsive UI.</p>
+            <a href="https://ayman-car.netlify.app/" target="_blank" class="btn btn-outline-primary">View Live</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card h-100 shadow-soft">
+          <img src="assets/img/Screenshot 2025-04-20 192338.png" class="card-img-top" alt="Beta App">
+          <div class="card-body">
+            <h5 class="card-title">Beta App</h5>
+            <p class="card-text muted">Responsive university system built with PHP for internal management.</p>
+            <a href="https://github.com/mhmd901/beta" target="_blank" class="btn btn-outline-dark">View Code</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-center muted mt-4 mb-0">
+      Tip: Replace the HydroNova and Line-Follower images/links with your real assets when ready.
+    </p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-5">
+  <div class="container">
+    <h2 class="text-center section-title">Contact</h2>
+
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form action="https://formsubmit.co/mhmdamer673@gmail.com" method="POST">
+          <div class="mb-3">
+            <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+          </div>
+          <div class="mb-3">
+            <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+          </div>
+          <div class="mb-3">
+            <textarea name="message" class="form-control" rows="5" placeholder="Your Message" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100">Send Message</button>
+
+          <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+          <input type="hidden" name="_captcha" value="false">
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer text-center py-4">
+  <div class="container">
+    <p class="mb-0">&copy; <span id="year"></span> Mohammed Amer. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // Dynamic typing for the Hero role line
+  const roles = [
+    "AI & IoT Engineer",
+    "Full-Stack Developer (Laravel / Flutter)",
+    "HydroNova Founder",
+    "GDG OnCampus Co-Lead",
+    "Technology & AI Instructor"
+  ];
+
+  const el = document.getElementById("dynamicRole");
+  let i = 0, j = 0, deleting = false;
+
+  function typeLoop() {
+    const word = roles[i];
+
+    if (!deleting) {
+      el.textContent = word.slice(0, j++);
+      if (j > word.length) {
+        deleting = true;
+        setTimeout(typeLoop, 1200);
+        return;
+      }
+    } else {
+      el.textContent = word.slice(0, j--);
+      if (j < 0) {
+        deleting = false;
+        i = (i + 1) % roles.length;
+        j = 0;
+      }
+    }
+    setTimeout(typeLoop, deleting ? 45 : 65);
+  }
+  typeLoop();
+
+  // Footer year
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
 </html>
